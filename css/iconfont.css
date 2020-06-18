@@ -1,0 +1,35 @@
+@font-face {font-family: "iconfont";
+  src: url('../fonts/iconfont.ttf?') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+}
+
+.icon-shangchuantupian:before {
+  content: "\e6a9";
+}
+
+.icon-shangchuantupian1:before {
+  content: "\e677";
+}
+
+.icon-feiyongbaohan:before {
+  content: "\e8a4";
+}
+
+.icon-lianluojilu:before {
+  content: "\e717";
+}
+
+.icon-xinbaniconshangchuan-:before {
+  content: "\e618";
+}
+
+.icon-huifang:before {
+  content: "\e616";
+}
+
