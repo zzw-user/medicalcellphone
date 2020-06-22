@@ -4786,4 +4786,10 @@ body>.mui-progressbar {
 .my-table tr:nth-child(even){
     background-color: #f8f8f8 !important;
 }
-
+.mui-input-clear input::-webkit-input-placeholder,textarea::-webkit-input-placeholder{
+	font-size: 10px;
+}
+.my-font-size{
+	font-size: 15px;
+	
+}

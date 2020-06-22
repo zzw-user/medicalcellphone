@@ -6,48 +6,19 @@
 		<title></title>
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css"/>
 	</head>
 
 	<body>
-		<script src="../../js/mui.min.js"></script>
-		<script type="text/javascript">
-			mui.init()
-			function retrun(){
-				window.history.go(-1);
-			}
-			mui.plusReady(function () {
-			    var data = plus.webview.currentWebview();
-				mui.toast(data.id);
-			})
-		</script>
 		<header class="mui-bar mui-bar-nav my-bar-img">
 			<a class="mui-icon mui-action-menu mui-icon mui-icon-back mui-pull-left" href="#" onclick="retrun()"></a>
-			<h1 class="mui-title">修改保养费用</h1>
-			<a class="mui-pull-right" style="font-size: 15px;margin-top: 13px;" href="#" onclick="retrun()">取消</a>
+			<h1 class="mui-title">修改保养费用</h1>		
 		</header>
-			<!-- <nav class="mui-bar mui-bar-tab">
-				<a class="mui-tab-item mui-active">
-					<span class="mui-icon mui-icon-home"></span>
-					<span class="mui-tab-label">首页</span>
-				</a>
-				<a class="mui-tab-item">
-					<span class="mui-icon mui-icon iconfont icon-lianluojilu"></span>
-					<span class="mui-tab-label">记录</span>
-				</a>
-				<a class="mui-tab-item">
-					<span class="mui-icon iconfont icon-feiyongbaohan"></span>
-					<span class="mui-tab-label">费用</span>
-				</a>
-				<a class="mui-tab-item">
-					<span class="mui-icon iconfont icon-huifang"></span>
-					<span class="mui-tab-label">回访</span>
-				</a>
-			</nav> -->
 			<!-- 主页面内容容器 -->
 			<div class="mui-content mui-scroll-wrapper" style="background-color: white;">
 				<div class="mui-scroll">
 					<!-- 主界面具体展示内容 -->
-					<form class="mui-input-group" style="font-size: 13px;margin-top: 10%;">
+					<form class="mui-input-group" style="font-size: 15px;margin-top: 10%;">
 					    <div class="mui-input-row" style="width: 100%;">
 							<label >保养人员</label>
 							<select>
@@ -58,32 +29,34 @@
 					    </div>
 					    <div class="mui-input-row">
 							<label >保养地址</label>
-					        <input type="text" class="mui-input-clear" placeholder="请填写保养地址" style="font-size: 14px;">
+					        <input type="text" class="mui-input-clear" placeholder="请填写保养地址" style="font-size: 15px;">
 							<span class="mui-icon iconfont icon-xinbaniconshangchuan-" style="position: absolute;margin-left: 55%;margin-top: 10px;font-size: 20px;"></span>
 					    </div>
 						<div class="mui-input-row">
 							<label >录入人</label>
-						    <input type="text" class="mui-input-clear" placeholder="" style="font-size: 14px;">
+						    <input type="text" class="mui-input-clear" placeholder="" style="font-size: 15px;">
 						</div>
 						<div class="mui-input-row">
 							<label >联系电话</label>
-						    <input type="text" class="mui-input-clear" placeholder="请填写联系电话" style="font-size: 14px;">
+						    <input type="text" class="mui-input-clear" placeholder="请填写联系电话" style="font-size: 15px;">
 						</div>
 						<div class="mui-input-row">
 							<label >费用</label>
-						    <input type="text" class="mui-input-clear" placeholder="" style="font-size: 14px;">
+						    <input type="text" class="mui-input-clear" placeholder="" style="font-size: 15px;">
 						</div><strong></strong>
 						<div class="mui-input-row">
 							<label >产品编号</label>
-						    <input type="text" class="mui-input-clear" placeholder="请填写产品编号" style="font-size: 14px;">
+						    <input type="text" class="mui-input-clear" placeholder="请填写产品编号" style="font-size: 15px;">
 						</div>
 					</form>
-					<div class="mui-button-row">
-					    <button type="button" class="mui-btn mui-btn-primary" style="width: 60%;margin-top: 50px;height: 40px;font-size: 15px;border-radius: 7px;">保存</button>
+					<div class="mui-content-padded">
+					    <button type="button" class="mui-btn mui-btn-block mui-btn-blue border-radius">保存</button>
 					</div>
 				</div>
 			</div>
 		<div class="mui-off-canvas-backdrop"></div>
 	</body>
+	<script src="../../js/mui.min.js"></script>
+	<script src="../../static/js/upkeep/updCost.js"></script>
 
 </html>
