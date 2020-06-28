@@ -1,0 +1,113 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css"/>
+	</head>
+	<style>
+		html,body{
+		touch-action: none;
+		}
+		ul li a{
+		font-size: 17px!important;
+		}
+		.mui-media-body{
+			font-size: 15px;
+		}
+		#div {
+		    width: 0px;
+		    height: 0px;
+		    background: red;
+		    position: fixed;
+		    top: 70%;
+		    left: 50%;
+		}
+		 
+		/*移除底部或顶部三角,需要在删除此代码*/
+		.mui-popover .mui-popover-arrow:after {
+		    width: 0px;
+		}
+	</style>
+	<body>
+		
+			<header class="mui-bar mui-bar-nav my-bar-img">
+				<a class="mui-icon mui-action-menu mui-icon mui-icon-home mui-pull-left" href="#" onclick="home()"></a>
+				<div class="mui-input-row mui-search" style="width: 65%; margin:0 50px;position: absolute;">
+					<input id="searchInput" type="search" class="mui-input-clear" onkeyup="enterSearch(event)" placeholder="安装人员、安装地址" style="background-color: white;">
+				</div>
+				<a class="mui-icon mui-icon mui-icon-plus mui-pull-right" onclick="addUpkeep()"></a>
+			</header>
+				<nav class="mui-bar mui-bar-tab" onclick="send()">
+					<a class="mui-tab-item">
+						<span class="mui-icon mui-icon-paperplane" ></span>
+						<span class="mui-tab-label">派单</span>
+					</a>
+					<a class="mui-tab-item" onclick="record()">
+						<span class="mui-icon mui-icon iconfont icon-lianluojilu" ></span>
+						<span class="mui-tab-label">记录</span>
+					</a>
+					<a class="mui-tab-item mui-active" onclick="cost()">
+						<span class="mui-icon iconfont icon-feiyongbaohan" ></span>
+						<span class="mui-tab-label">费用</span>
+					</a>
+					<a class="mui-tab-item" onclick="payReturn()">
+						<span class="mui-icon iconfont icon-huifang"></span>
+						<span class="mui-tab-label">回访</span>
+					</a>
+				</nav>
+				<!-- 主页面内容容器 -->
+				<div class="mui-content mui-scroll-wrapper">
+					<div class="mui-scroll">
+						<!-- 主界面具体展示内容 -->
+						<ul class="mui-table-view">
+									<li class="mui-table-view-cell mui-media">
+										<div class="mui-slider-right mui-disabled">
+											<a class="mui-btn mui-btn-grey mui-icon" onclick="exit()">编辑</a>
+											<a class="mui-btn mui-btn-yellow mui-icon" onclick="assess()">评估</a>
+											<a class="mui-btn mui-btn-red mui-icon">删除</a>
+										</div>
+										<div class="mui-slider-handle"  onclick="list(1)">
+											<div class="mui-table-cell">
+												<div class="mui-media-body">
+													<span>费用：￥</span>50
+													<p>安装人：xx </p>
+													<p style="width: 200px;" class="mui-ellipsis">湖南省长沙市岳麓区望月</p>
+												</div>
+											</div>
+											<p style="position: absolute;margin-top: -20px;right: 0;">2020-06-18</p>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+						<div id="div"></div>
+						<div id="popover" class="mui-popover">
+						    <div class="mui-popover-arrow"></div>
+						    <div align="center">
+								<div class="mui-card">
+									<div class="mui-card-header">￥50</div>
+									<div class="mui-card-content">
+										<div class="mui-card-content-inner">
+											湖南省长沙市岳麓区望月街道杜鹃路北大青鸟大计校区772号
+										</div>
+										<p>安装人：xxx</p>
+									</div>
+									<div class="mui-card-footer">
+										<P>2020-06-18</P>
+										<P>xxx</P>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			<div class="mui-off-canvas-backdrop"></div>
+	</body>
+	<script src="../../static/js/jquery-1.12.4.js"></script>
+	<script src="../../js/mui.min.js"></script>
+	<script src="../../static/js/system/Cost.js"></script>
+</html>
