@@ -59,86 +59,96 @@ function enterSearch(event) {
 	if (event.keyCode == 13) { //用户点击回车的事件号为13
 		var keyword = document.getElementById('searchInput').value;
 		mui.toast(keyword);
-		var param={address:$("#searchInput").value};
+		var param={address:keyword,aftertype:1};
 		select(param);
 	}
 }
 function list(id) {
-	// $.ajax({
-	// 	url: 'http://127.0.0.1:8081/zDelivery/getDeliveryOne',
-	// 	type: 'post',
-	// 	dataType: 'json',
-	// 	data:{pid:id},
-	// 	success: function(e) {
-			// $("#ul").append(
-			// "<div class='mui-card'>"+
-			// 	"<div class='mui-card-header'>"+e.pname+"</div>"+
-			// 	"<div class='mui-card-content'>"+
-			// 		"<p style='left: 0;'>回访方式："+e.way+"</p>"+
-			// 		"<div class='mui-card-content-inner'>"+e.describe +
-			// 		"</div>"+
-			// 	"</div>"+
-			// 	"<div class='mui-card-footer'>"+
-			// 		"<P>"+e.writetime+"</P>"+
-			// 		"<P>"+e.moperator+"</P>"+
-			// 	"</div>"+
-			// "</div>"
-			// );
-	// 	}
-	// })
+	$.ajax({
+		url: 'http://127.0.0.1:8080/zPayare/getPayOne',
+		type: 'post',
+		dataType: 'json',
+		data:{pid:id},
+		success: function(e) {
+			$("#content").html("");
+			$("#content").append(
+			"<div class='mui-card'>"+
+				"<div class='mui-card-header'>"+e.pname+"</div>"+
+				"<div class='mui-card-content'>"+
+					"<p style='left: 0;'>回访方式："+e.way+"</p>"+
+					"<div class='mui-card-content-inner'>"+e.describe +
+					"</div>"+
+				"</div>"+
+				"<div class='mui-card-footer'>"+
+					"<P>"+e.writetime+"</P>"+
+					"<P>"+e.moperator+"</P>"+
+				"</div>"+
+			"</div>"
+			);
+		}
+	})
 	mui("#popover").popover('toggle', document.getElementById("div"));
 }
 function del(id){
-	mui.toast(id);
 	mui.confirm('确定要删除此数据吗，确认？', 'Hello MUI', ['取消','确认'], function(e) {
 		if (e.index == 1) {
-			
-			// $.ajax({
-			// 	url: 'http://127.0.0.1:8081/zDelivery/delDelivery',
-			// 	type: 'post',
-			// 	dataType: 'json',
-			// 	data:{pid:id},
-			// 	success: function(e) {
-			// 		if(e){
-			//  		mui.toast("删除成功！");
-			// 			index=$(this).parents(".list-li").index();
-			// 			$(".list-li").eq(index-1).remove();
-			// 		}else{
-			// 			mui.toast("删除失败！");
-			// 		}
-			// 	}
-			// })
+			$.ajax({
+				url: 'http://127.0.0.1:8080/zPayare/delPay',
+				type: 'post',
+				dataType: 'json',
+				data:{pid:id},
+				success: function(e) {
+					if(e){
+			 		mui.toast("删除成功！");
+						// index=$(this).parents(".list-li").index();
+						// $(".list-li").eq(index-1).remove();
+						var data =document.getElementById("searchInput").value;
+						if(data=="" || datae==null){
+							select({aftertype:1});
+						}else{
+							select({address:data,aftertype:1});
+						}
+					}else{
+						mui.toast("删除失败！");
+					}
+				}
+			})
 		}
 	})
 }
 $(function(){
-	select(null);
+	select({aftertype:1});
 })
 function select(param){
 	$.ajax({
-		url: 'http://127.0.0.1:8081/zDelivery/getDelivery',
+		url: 'http://127.0.0.1:8080/zPayare/getPay',
 		type: 'post',
 		dataType: 'json',
 		data:param,
 		success: function(e) {
-			$(e).each(function(){
-				$("#ul").append("<li class='mui-table-view-cell mui-media list-li'>"+
-							"<div class='mui-slider-right mui-disabled'>"+
-								"<a class='mui-btn mui-btn-grey mui-icon' onclick='exit("+this.pid+")'>编辑</a>"+
-								"<a class='mui-btn mui-btn-red mui-icon' onclik='del("+this.pid+")'>删除</a>"+
-							"</div>"+
-							"<div class='mui-slider-handle' onclick='list("+this.pid+")'>"+
-								"<div class='mui-table-cell'>"+
-								"<div class='mui-media-body'>"+
-									"<span>回访客户：</span>"+this.pname+
-									"<p>回访方式："+this.way+"</p>"+
-									"<p style='width: 200px;' class='mui-ellipsis'>"+this.describe+"</p>"+
+			$("#ul").html("");
+			if(e.length>0){
+				$(e).each(function(){
+					$("#ul").append("<li class='mui-table-view-cell mui-media list-li'>"+
+								"<div class='mui-slider-right mui-disabled'>"+
+									"<a class='mui-btn mui-btn-grey mui-icon' onclick='exit("+this.pid+")'>编辑</a>"+
+									"<a class='mui-btn mui-btn-red mui-icon' onclick='del("+this.pid+")'>删除</a>"+
 								"</div>"+
-							"</div>"+
-							"<p style='position: absolute;margin-top: -20px;right: 0;'>"+this.writetime+"</p>"+
-							"</div>"+
-				"</li>");
+								"<div class='mui-slider-handle' onclick='list("+this.pid+")'>"+
+									"<div class='mui-table-cell'>"+
+									"<div class='mui-media-body'>"+
+										"<span>回访客户：</span>"+this.pname+
+										"<p>回访方式："+this.way+"</p>"+
+										"<p style='width: 200px;' class='mui-ellipsis'>"+this.describe+"</p>"+
+									"</div>"+
+								"</div>"+
+								"<p style='position: absolute;margin-top: -20px;right: 0;'>"+this.writetime+"</p>"+
+								"</div>"+
+					"</li>");
 				});
+			}else{
+				$(".mui-scroll").append("<p style='font-size:18px;padding:20px;text-align: center;'>无数据<p>");
+			}
 		}
 	})
 }

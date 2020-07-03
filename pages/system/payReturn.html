@@ -37,9 +37,9 @@
 		<header class="mui-bar mui-bar-nav my-bar-img">
 			<a class="mui-icon mui-action-menu mui-icon mui-icon-home mui-pull-left" href="#" onclick="home()"></a>
 			<div class="mui-input-row mui-search" style="width: 65%; margin:0 50px;position: absolute;">
-				<input id="searchInput" type="search" class="mui-input-clear" onkeyup="enterSearch(event)" placeholder="回访类型、回访客户" style="background-color: white;">
+				<input id="searchInput" type="search" class="mui-input-clear" onkeyup="enterSearch(event)" placeholder="回访方式、回访客户" style="background-color: white;">
 			</div>
-			<a class="mui-icon mui-icon mui-icon-plus mui-pull-right" onclick="addUpkeep()"></a>
+			<!-- <a class="mui-icon mui-icon mui-icon-plus mui-pull-right" onclick="addUpkeep()"></a> -->
 		</header>
 		<nav class="mui-bar mui-bar-tab">
 			<a class="mui-tab-item" onclick="send()">
@@ -63,30 +63,15 @@
 		<div class="mui-content mui-scroll-wrapper">
 			<div class="mui-scroll">
 				<!-- 主界面具体展示内容 -->
-				<ul class="mui-table-view">
-					<li class="mui-table-view-cell mui-media">
-						<div class="mui-slider-right mui-disabled">
-							<a class="mui-btn mui-btn-grey mui-icon" onclick="exit()">编辑</a>
-							<a class="mui-btn mui-btn-red mui-icon" onclick="del(1)">删除</a>
-						</div>
-						<div class="mui-slider-handle" onclick="list(1)">
-							<div class="mui-table-cell">
-								<div class="mui-media-body" >
-									<span>回访客户：</span>xxx
-									<p>回访方式：xx </p>
-									<p style="width: 200px;" class="mui-ellipsis">这是一段描述</p>
-								</div>
-							</div>
-							<p style="position: absolute;margin-top: -20px;right: 0;">2020-06-18</p>
-						</div>
-					</li>
+				<ul class="mui-table-view" id="ul">
+					
 				</ul>
 			</div>
 		</div>
 		<div id="div"></div>
 		<div id="popover" class="mui-popover">
 			<div class="mui-popover-arrow"></div>
-			<div align="center">
+			<div align="center" id="content">
 				<div class="mui-card">
 					<div class="mui-card-header">xxx</div>
 					<div class="mui-card-content">

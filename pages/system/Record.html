@@ -61,19 +61,18 @@
 				<div class="mui-content mui-scroll-wrapper">
 					<div class="mui-scroll">
 						<!-- 主界面具体展示内容 -->
-						<ul class="mui-table-view">
+						<ul class="mui-table-view" id="ul">
 							<li class="mui-table-view-cell mui-media">
 								<div class="mui-slider-right mui-disabled">
 									<a class="mui-btn mui-btn-grey mui-icon" onclick="exit()">编辑</a>
-									<a class="mui-btn mui-btn-yellow mui-icon" onclick="assess()">评估</a>
-									<a class="mui-btn mui-btn-red mui-icon" onclick="del()">删除</a>
+									<a class="mui-btn mui-btn-red mui-icon" onclick="del(1)">删除</a>
 								</div>
 								<div class="mui-slider-handle" onclick="list(1)">
 									<div class="mui-table-cell">
-										<div class="mui-media-body">
-											<span>产品编码</span>ZNDN001
-											<p>安装人：xx  </p>
-											<p style="width: 200px;" class="mui-ellipsis">湖南省长沙市岳麓区望月街道杜鹃路北大青鸟大计校区772号</p>
+										<div class="mui-media-body" >
+											<span>回访客户：</span>xxx
+											<p>回访方式：xx </p>
+											<p style="width: 200px;" class="mui-ellipsis">这是一段描述</p>
 										</div>
 									</div>
 									<p style="position: absolute;margin-top: -20px;right: 0;">2020-06-18</p>
@@ -85,8 +84,8 @@
 				<div id="div"></div>
 				<div id="popover" class="mui-popover">
 				    <div class="mui-popover-arrow"></div>
-				    <div align="center">
-						<div class="mui-card">
+				    <div align="center" id="content">
+						<div class="mui-card" id>
 							<div class="mui-card-header">ZNDNOO1</div>
 							<div class="mui-card-content">
 								<div class="mui-card-content-inner">
