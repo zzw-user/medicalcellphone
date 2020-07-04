@@ -12,7 +12,7 @@
 	<body>
 		
 		<header class="mui-bar mui-bar-nav my-bar-img">
-			<a class="mui-icon mui-action-menu mui-icon mui-icon-back mui-pull-left" href="#" onclick="retrun()"></a>
+			<a class="mui-icon mui-action-menu mui-icon mui-icon-back mui-pull-left mui-action-back" href="#"></a>
 			<h1 class="mui-title">修改回访记录</h1>
 		</header>
 			<!-- 主页面内容容器 -->
@@ -22,32 +22,35 @@
 					<form class="mui-input-group" style="font-size: 15px;margin-top: 10%;">
 						<div class="mui-input-row">
 							<label >回访人名</label>
-						    <input type="text" class="mui-input-clear" placeholder="请填写产品编号" style="font-size: 14px;">
+						    <input type="text" id="pname" class="mui-input-clear" placeholder="请填写回访人" style="font-size: 15px;">
+							<input type="hidden" id="pid" />
 						</div>
 					    <div class="mui-input-row" style="width: 100%;">
 							<label >操作员</label>
-							<select>
-								<option>xxx</option>
-								<option>xxx</option>
-								<option>xxx</option>
+							<select id="operator">
 							</select>
 					    </div>
 					    <div class="mui-input-row">
 							<label >回访方式</label>
-					        <input type="text" class="mui-input-clear" placeholder="请填写回访方式" style="font-size: 15px;">
+					        <input type="text" class="mui-input-clear" id="way" placeholder="请填写回访方式" style="font-size: 15px;">
 					    </div>
 						<div class="mui-input-row">
+							<label >记录日期</label>
+						    <input type="text" class="mui-input-clear" id="writetime" onclick="getDate()" placeholder="请填写记录日期" style="font-size: 15px;">
+						</div>
+						<div class="mui-input-row">
 							<label >描述</label>
-						    <input type="text" class="mui-input-clear" placeholder="请填写联系电话" style="font-size: 15px;">
+						    <input type="text" class="mui-input-clear" id="describe" placeholder="请填写你的描述" style="font-size: 15px;">
 						</div>
 					</form>
 					<div class="mui-content-padded">
-					    <button type="button" class="mui-btn mui-btn-block mui-btn-blue border-radius">保存</button>
+					    <button type="button" class="mui-btn mui-btn-block mui-btn-blue border-radius" onclick="submit()">保存</button>
 					</div>
 				</div>
 			</div>
 		<div class="mui-off-canvas-backdrop"></div>
 	</body>
+	<script src="../../static/js/jquery-1.12.4.js"></script>
 	<script src="../../js/mui.min.js"></script>
-	<script src="../../static/js/maintain/addPayReturn.js"></script>
+	<script src="../../static/js/maintain/updPayReturn.js"></script>
 </html>

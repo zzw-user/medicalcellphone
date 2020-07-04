@@ -12,7 +12,7 @@
 	<body>
 		
 		<header class="mui-bar mui-bar-nav my-bar-img">
-			<a class="mui-icon mui-action-menu mui-icon mui-icon-back mui-pull-left" href="#" onclick="retrun()"></a>
+			<a class="mui-icon mui-action-menu mui-icon mui-icon-back mui-pull-left mui-action-back" href="#"></a>
 			<h1 class="mui-title">修改回访记录</h1>
 		</header>
 			<!-- 主页面内容容器 -->
@@ -36,7 +36,7 @@
 					    </div>
 						<div class="mui-input-row">
 							<label >记录日期</label>
-						    <input type="text" class="mui-input-clear" id="writetime" placeholder="请填写记录日期" style="font-size: 15px;">
+						    <input type="text" class="mui-input-clear" id="writetime" onclick="getDate()" placeholder="请填写记录日期" style="font-size: 15px;">
 						</div>
 						<div class="mui-input-row">
 							<label >描述</label>

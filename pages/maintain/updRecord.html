@@ -11,7 +11,7 @@
 
 	<body>
 		<header class="mui-bar mui-bar-nav my-bar-img">
-			<a class="mui-icon mui-action-menu mui-icon mui-icon-back mui-pull-left" href="#" onclick="retrun()"></a>
+			<a class="mui-icon mui-action-menu mui-icon mui-icon-back mui-pull-left mui-action-back" href="#" onclick="retrun()"></a>
 			<h1 class="mui-title">修改维修记录</h1>
 		</header>
 			<!-- 主页面内容容器 -->
@@ -19,55 +19,56 @@
 				<div class="mui-scroll">
 					<!-- 主界面具体展示内容 -->
 					<form class="mui-input-group" style="font-size: 15px;margin-top: 10%;">
+						<div class="mui-input-row">
+							<label >产品编码</label>
+						    <input type="text" class="mui-input-clear" id="coding"style="font-size: 15px;" disabled="disabled">
+							<input type="hidden" id="rid"/>
+						</div>
 					    <div class="mui-input-row" style="width: 100%;">
 							<label >维修人员</label>
-							<select>
-								<option>xxx</option>
-								<option>aaa</option>
-								<option>bbb</option>
+							<select id="operator">
 							</select>
 					    </div>
 						<div class="mui-input-row" style="height: 150px;padding: 10px 0px;">
 							<label >维修前照片</label>
-						    <img src="../../images/iconfont-tianjia.png" onclick="Image()"/>
+							<input style="position:absolute;opacity:0;width: 140px;height: 140px;" type="file" accept="image/*" id="prePhotos" />
+						    <img src="../../images/iconfont-tianjia.png" id="prePhotos2" width="120" height="120"/>
 						</div>
 						<div class="mui-input-row" style="height:150px;padding: 10px 0px">
 							<label >维修后照片</label>
-						    <img src="../../images/iconfont-tianjia.png" onclick="Image()"/>
+							<input style="position:absolute;opacity:0;width: 140px;height: 140px;"  type="file" accept="image/*" id="sufPhotos" />
+							<img src="../../images/iconfont-tianjia.png" id="sufPhotos2" width="120" height="120"/>
 						</div>
 						<div class="mui-input-row">
 							<label >维修日期</label>
-						    <input type="text" class="mui-input-clear" placeholder="请选择维修日期" style="font-size: 15px;" onclick="getDate()">
-						</div>
-						<div class="mui-input-row">
-							<label >产品编码</label>
-						    <input type="text" class="mui-input-clear" placeholder="请填写产品编号" style="font-size: 15px;">
+						    <input type="text" class="mui-input-clear" id="installationtime" placeholder="请选择维修日期" style="font-size: 15px;" onclick="getDate()">
 						</div>
 					    <div class="mui-input-row">
 							<label >维修地址</label>
-					        <input type="text" class="mui-input-clear" placeholder="请填写维修地址" style="font-size: 15px;">
-							<span class="mui-icon iconfont icon-xinbaniconshangchuan-" style="position: absolute;margin-left: 55%;margin-top: 10px;font-size: 20px;"></span>
+					        <input type="text" class="mui-input-clear" id="address" placeholder="请填写维修地址" style="font-size: 15px;">
+							<!-- <span class="mui-icon iconfont icon-xinbaniconshangchuan-" style="position: absolute;margin-left: 55%;margin-top: 10px;font-size: 20px;"></span> -->
 					    </div>
 							<div class="mui-input-row mui-radio mui-left">
 								<label>未完成</label>
-								<input name="radio1" type="radio" value="dd">
+								<input name="status" type="radio" value="1" checked="checked">
 							</div> 
 							<div class="mui-input-row mui-radio mui-left">
 								<label>处理中</label>
-								<input name="radio1" type="radio" value="dd">
+								<input name="status" type="radio" value="2">
 							</div> 
 							<div class="mui-input-row mui-radio mui-left">
 								<label>已完成</label>
-								<input name="radio1" type="radio" value="dd">
+								<input name="status" type="radio" value="3">
 							</div> 
 					</form>
 					<div class="mui-content-padded">
-					    <button type="button" class="mui-btn mui-btn-block mui-btn-blue border-radius">保存</button>
+					    <button type="button" class="mui-btn mui-btn-block mui-btn-blue border-radius" onclick="submit()">保存</button>
 					</div>
 				</div>
 			</div>
 		<div class="mui-off-canvas-backdrop"></div>
 	</body>
+	<script src="../../static/js/jquery-1.12.4.js"></script>
 	<script src="../../js/mui.min.js"></script>
 	<script src="../../static/js/maintain/updRecord.js"></script>
 </html>

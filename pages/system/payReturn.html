@@ -42,27 +42,28 @@
 			<!-- <a class="mui-icon mui-icon mui-icon-plus mui-pull-right" onclick="addUpkeep()"></a> -->
 		</header>
 		<nav class="mui-bar mui-bar-tab">
-			<a class="mui-tab-item" onclick="send()">
+			<a class="mui-tab-item" onclick="send()" id="Send">
 				<span class="mui-icon mui-icon-paperplane"></span>
 				<span class="mui-tab-label">派单</span>
 			</a>
-			<a class="mui-tab-item" onclick="record()">
+			<a class="mui-tab-item" onclick="record()" id="Record">
 				<span class="mui-icon mui-icon iconfont icon-lianluojilu"></span>
 				<span class="mui-tab-label">记录</span>
 			</a>
-			<a class="mui-tab-item" onclick="cost()">
+			<a class="mui-tab-item" onclick="cost()" id="cost">
 				<span class="mui-icon iconfont icon-feiyongbaohan"></span>
 				<span class="mui-tab-label">费用</span>
 			</a>
-			<a class="mui-tab-item mui-active" onclick="payReturn()">
+			<a class="mui-tab-item mui-active" id="payReturn">
 				<span class="mui-icon iconfont icon-huifang"></span>
 				<span class="mui-tab-label">回访</span>
 			</a>
 		</nav>
 		<!-- 主页面内容容器 -->
-		<div class="mui-content mui-scroll-wrapper">
+		<div id="refreshContainer" class="mui-content mui-scroll-wrapper">
 			<div class="mui-scroll">
 				<!-- 主界面具体展示内容 -->
+				<p style='font-size:18px;padding:20px;text-align: center;' style="display: none;" id='message'>无数据<p>
 				<ul class="mui-table-view" id="ul">
 					
 				</ul>

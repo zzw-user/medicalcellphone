@@ -23,7 +23,7 @@
 		    height: 0px;
 		    background: red;
 		    position: fixed;
-		    top: 70%;
+		    top: 50%;
 		    left: 50%;
 		}
 		 
@@ -40,53 +40,37 @@
 				</div>
 			</header>
 				<nav class="mui-bar mui-bar-tab">
-					<a class="mui-tab-item" onclick="send()">
+					<a class="mui-tab-item" onclick="send()" id="Send">
 						<span class="mui-icon mui-icon mui-icon mui-icon-paperplane"></span>
 						<span class="mui-tab-label">派单</span>
 					</a>
-					<a class="mui-tab-item mui-active" onclick="record()">
+					<a class="mui-tab-item mui-active" id="Record">
 						<span class="mui-icon iconfont icon-lianluojilu" ></span>
 						<span class="mui-tab-label">记录</span>
 					</a>
-					<a class="mui-tab-item" onclick="cost()">
+					<a class="mui-tab-item" onclick="cost()" id="cost">
 						<span class="mui-icon iconfont icon-feiyongbaohan" ></span>
 						<span class="mui-tab-label">费用</span>
 					</a>
-					<a class="mui-tab-item" onclick="payReturn()">
+					<a class="mui-tab-item" onclick="payReturn()" id="Record">
 						<span class="mui-icon iconfont icon-huifang" ></span>
 						<span class="mui-tab-label">回访</span>
 					</a>
 				</nav>
 				<!-- 主页面内容容器 -->
-				<div class="mui-content mui-scroll-wrapper">
+				<div id="refreshContainer" class="mui-content mui-scroll-wrapper">
 					<div class="mui-scroll">
 						<!-- 主界面具体展示内容 -->
-						<ul class="mui-table-view">
-							<li class="mui-table-view-cell mui-media">
-								<div class="mui-slider-right mui-disabled">
-									<a class="mui-btn mui-btn-grey mui-icon" onclick="exit()">编辑</a>
-									<a class="mui-btn mui-btn-yellow mui-icon" onclick="assess()">评估</a>
-									<a class="mui-btn mui-btn-red mui-icon">删除</a>
-								</div>
-								<div class="mui-slider-handle" >
-									<div class="mui-table-cell">
-										<div class="mui-media-body" onclick="list(1)">
-											<span>产品编码</span>ZNDN001
-											<p>保养人：xx  </p>
-											<p style="width: 200px;" class="mui-ellipsis">湖南省长沙市岳麓区望月街道杜鹃路北大青鸟大计校区772号</p>
-										</div>
-									</div>
-									<p style="position: absolute;margin-top: -20px;right: 0;">2020-06-18</p>
-								</div>
-							</li>
+						<p style='font-size:18px;padding:20px;text-align: center;' style="display: none;" id='message'>无数据<p>
+						<ul class="mui-table-view" id="ul">
 						</ul>
 					</div>
 				</div>
 				<div id="div"></div>
 				<div id="popover" class="mui-popover">
 				    <div class="mui-popover-arrow"></div>
-				    <div align="center">
-						<div class="mui-card">
+				    <div align="center" id="content">
+						<div class="mui-card" style="opacity: 0;">
 							<div class="mui-card-header">ZNDNOO1</div>
 							<div class="mui-card-content">
 								<div class="mui-card-content-inner">
@@ -108,6 +92,7 @@
 				</div>
 			<div class="mui-off-canvas-backdrop"></div>
 	</body>
+	<script src="../../static/js/jquery-1.12.4.js"></script>
 	<script src="../../js/mui.min.js"></script>
 	<script src="../../static/js/upkeep/Record.js"></script>
 </html>

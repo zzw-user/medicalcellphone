@@ -6,36 +6,43 @@ function retrun() {
 
 $(function() {
 	var did;
-	mui.plusReady(function() {
-		var data = plus.webview.currentWebview();
-		did = data.did;
-		mui.toast(data.did);
-		mui.toast(did);
-	});
-	mui.post('http://127.0.0.1:8080/zInstallrecord/getMpuser',{
+	mui.post(localStorage.getItem('adminurl')+'/zInstallrecord/getMpuser',{
 			
-		},function(data){
+		},function(e){
 			$("#operator").append("<option value='0'>请选择</opton>")
-			$(data).each(function(){
+			$(e).each(function(){
 				$("#operator").append("<option value='"+this.mpid+"'>"+this.realname+"</opton>")
 			})
 		},'json'
 	);
-	$.ajax({
-		url: 'http://127.0.0.1:8080/zDelivery/getDeliveryOne',
-		type: 'post',
-		dataType: 'json',
-		data: {
-			did: 3
-		},
-		success: function(e) {
-			$("#did").val(e.did);
-			$("#operator").val(e.operator);
-			$("#coding").val(e.coding);
-			$("#phone").val(e.phone);
-			$("#address").val(e.address);
-		}
-	})
+	mui.plusReady(function() {
+		var data = plus.webview.currentWebview();
+		did = parseInt(data.did);
+		mui.ajax(localStorage.getItem('adminurl')+'/zDelivery/getDeliveryOne',{
+		    data:{
+				did:did
+		    },
+		    dataType: 'json', //服务器返回json格式数据
+		        type: 'post', //HTTP请求类型
+		        timeout: 10000, //超时时间设置为10秒；
+		    beforeSend: function() {
+		        showLoading();
+		    },
+		    complete: function() {
+		        hideLoading();
+		    },
+		    success: function(e) {
+		       $("#did").val(e.did);
+		       $("#operator").val(e.operator);
+		       $("#coding").val(e.coding);
+		       $("#phone").val(e.phone);
+		       $("#address").val(e.address);
+		    },
+		    error: function(xhr, type, errorThrown) {
+		        mui.alert('服务器连接超时，请稍后再试');
+		    }
+		});
+	});
 })
 
 function getAddress() {
@@ -70,19 +77,28 @@ function submit(){
 		});
 		return false;
 	}
-	$.ajax({
-		url: 'http://127.0.0.1:8080/zDelivery/updDelivery',
-		type: 'post',
-		dataType: 'text',
-		data: {
+	mui.ajax(localStorage.getItem('adminurl')+'/zDelivery/updDelivery',{
+	    data:{
 			did:did,operator:operator,coding:coding,phone:phone,address:address
-		},
-		success: function(e) {
-			if(e){
-				mui.toast("修改完成！");
-			}else{
-				mui.toast("修改失败！"); 
-			}
-		}
-	})
+	    },
+	    dataType: 'jsonp',
+	        type: 'post', //HTTP请求类型
+	        timeout: 10000, //超时时间设置为10秒；
+	    beforeSend: function() {
+	        showLoading();
+	    },
+	    complete: function() {
+	        hideLoading();
+	    },
+	    success: function(e) {
+	      if(e){
+	      	mui.toast("修改完成！");
+	      }else{
+	      	mui.toast("修改失败！"); 
+	      }
+	    },
+	    error: function(xhr, type, errorThrown) {
+	        mui.alert('服务器连接超时，请稍后再试');
+	    }
+	});
 }

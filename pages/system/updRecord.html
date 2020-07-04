@@ -11,7 +11,7 @@
 
 	<body>
 		<header class="mui-bar mui-bar-nav my-bar-img">
-			<a class="mui-icon mui-action-menu mui-icon mui-icon-back mui-pull-left" href="#" onclick="retrun()"></a>
+			<a class="mui-icon mui-action-menu mui-icon mui-icon-back mui-pull-left mui-action-back" href="#" onclick="retrun()"></a>
 			<h1 class="mui-title">修改安装记录</h1>
 		</header>
 			<!-- 主页面内容容器 -->
@@ -31,11 +31,13 @@
 					    </div>
 						<div class="mui-input-row" style="height: 150px;padding: 10px 0px;">
 							<label >安装前照片</label>
-						    <img src="../../images/iconfont-tianjia.png" onclick="Image()"/>
+							<input style="position:absolute;opacity:0;width: 140px;height: 140px;" type="file" accept="image/*" id="prePhotos" />
+						    <img src="../../images/iconfont-tianjia.png" id="prePhotos2" width="120" height="120"/>
 						</div>
 						<div class="mui-input-row" style="height:150px;padding: 10px 0px">
 							<label >安装后照片</label>
-						    <img src="../../images/iconfont-tianjia.png" onclick="Image()"/>
+							<input style="position:absolute;opacity:0;width: 140px;height: 140px;"  type="file" accept="image/*" id="sufPhotos" />
+							<img src="../../images/iconfont-tianjia.png" id="sufPhotos2" width="120" height="120"/>
 						</div>
 						<div class="mui-input-row">
 							<label >安装日期</label>

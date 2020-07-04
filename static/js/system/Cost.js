@@ -1,4 +1,28 @@
-mui.init();
+mui.init({
+　　pullRefresh: {
+　　　　container: '#refreshContainer', //要操作的容器，可选择到的都行，#Id,.Class都行
+　　　　down: {
+　　　　　　style:'circle',
+　　　　　　color:'#2BD009', //可选，默认“#2BD009” 下拉刷新控件颜色
+　　　　　　height:'150px',//可选,默认50px.下拉刷新控件的高度,
+　　　　　　range:'100px', //可选 默认100px,控件可下拉拖拽的范围
+　　　　　　offset:'0', //可选 默认0px,下拉刷新控件的起始位置
+　　　　　　auto: false,//可选,默认false.首次加载自动上拉刷新一次
+　　　　　　callback: pulldownRefresh
+　　　　}
+　　}
+});
+function pulldownRefresh() {
+　　setTimeout(function() {
+	var data =document.getElementById("searchInput").value;
+	if(data=="" || data==null){
+		select({aftertype:1});
+	}else{
+		select({address:data,aftertype:1});
+	}
+　　　　mui('#refreshContainer').pullRefresh().endPulldownToRefresh(); //refresh completed
+　　}, 1500);
+}
 mui('.mui-scroll-wrapper').scroll({
 	deceleration: 0.0005 //flick 减速系数，系数越大，滚动速度越慢，滚动距离越小，默认值0.0006
 });
@@ -6,16 +30,16 @@ mui('.mui-scroll-wrapper').scroll({
 function addUpkeep() {
 	mui.openWindow({
 		url: 'addCost.html',
-		id: 'addCost'
+		id: 'systemaddCost'
 	});
 }
 
-function exit() {
+function exit(id) {
 	mui.openWindow({
 		url: 'updCost.html',
-		id: 'updCost',
+		id: 'systemupdCost',
 		extras: {
-			'cid': 1
+			cid: id
 		}
 	});
 }
@@ -23,55 +47,60 @@ function exit() {
 function record() {
 	mui.openWindow({
 		url: 'Record.html',
-		id: 'Record'
+		id: 'systemRecord'
 	});
 };
 
 function send() {
 	mui.openWindow({
 		url: 'Send.html',
-		id: 'Send'
+		id: 'systemSend'
 	});
 };
-
-function cost() {
+function record() {
 	mui.openWindow({
-		url: 'cost.html',
-		id: 'cost'
+		url: 'Record.html',
+		id: 'systemRecord'
 	});
 };
-
+function home() {
+	mui.openWindow({
+		url: '../index.html',
+		id: 'systemindex'
+	});
+}
 function payReturn() {
 	mui.openWindow({
 		url: 'payReturn.html',
-		id: 'payReturn'
-	});
-}
-
-function home() {
-	mui.openWindow({
-		url: '../Index.html',
-		id: 'cost'
+		id: 'systempayReturn'
 	});
 }
 
 function assess() {
 	mui.prompt('请输入你对此的评估', '不错', '评估', ['取消', '确认'], function(e) {
 		if (e.index == 1) {
-			mui.toast(e.value);
-			$.ajax({
-				url: 'http://127.0.0.1:8080/zCost/getDeliveryOne',
-				type: 'post',
-				dataType: 'text',
+			mui.ajax(localStorage.getItem('adminurl') + '/zCost/getDeliveryOne', {
 				data: {
 					assess: e.value
+				},
+				dataType: 'json', //服务器返回json格式数据
+				type: 'post', //HTTP请求类型
+				timeout: 10000, //超时时间设置为10秒；
+				beforeSend: function() {
+					showLoading();
+				},
+				complete: function() {
+					hideLoading();
 				},
 				success: function(e) {
 					if (e) {
 						mui.toast("评估完成！");
 					}
+				},
+				error: function(xhr, type, errorThrown) {
+					mui.alert('服务器连接超时，请稍后再试');
 				}
-			})
+			});
 		}
 	})
 }
@@ -89,20 +118,26 @@ function enterSearch(event) {
 }
 
 function list(id) {
-	$.ajax({
-		url: 'http://127.0.0.1:8080/zCost/getCostOne',
-		type: 'post',
-		dataType: 'json',
+	mui.ajax(localStorage.getItem('adminurl') + '/zCost/getCostOne', {
 		data: {
 			cid: id
 		},
+		dataType: 'json', //服务器返回json格式数据
+		type: 'post', //HTTP请求类型
+		timeout: 10000, //超时时间设置为10秒；
+		beforeSend: function() {
+			showLoading();
+		},
+		complete: function() {
+			hideLoading();
+		},
 		success: function(e) {
 			$("#content").html("");
-			$("#content").append("<div class='mui-card'>"+
+			$("#content").append("<div class='mui-card'>" +
 				"<div class='mui-card-header'>￥" + e.cost + "</div>" +
 				"<div class='mui-card-content'>" +
-				"<div class='mui-card-content-inner'>"
-				+e.address +
+				"<div class='mui-card-content-inner'>" +
+				e.address +
 				"</div>" +
 				"<p>安装人：" + e.mname + "</p>" +
 				"</div>" +
@@ -111,8 +146,11 @@ function list(id) {
 				"<P>" + e.dataentryclerk + "</P>" +
 				"</div>" +
 				"</div>");
+		},
+		error: function(xhr, type, errorThrown) {
+			mui.alert('服务器连接超时，请稍后再试');
 		}
-	})
+	});
 	mui("#popover").popover('toggle', document.getElementById("div"));
 }
 
@@ -120,13 +158,18 @@ function del(id) {
 	mui.toast(id);
 	mui.confirm('确定要删除此数据吗，确认？', 'Hello MUI', ['取消', '确认'], function(e) {
 		if (e.index == 1) {
-
-			$.ajax({
-				url: 'http://127.0.0.1:8080/zCost/delCost',
-				type: 'post',
-				dataType: 'json',
+			mui.ajax(localStorage.getItem('adminurl') + '/zCost/delCost', {
 				data: {
 					cid: id
+				},
+				dataType: 'json', //服务器返回json格式数据
+				type: 'post', //HTTP请求类型
+				timeout: 10000, //超时时间设置为10秒；
+				beforeSend: function() {
+					showLoading();
+				},
+				complete: function() {
+					hideLoading();
 				},
 				success: function(e) {
 					if (e) {
@@ -147,8 +190,11 @@ function del(id) {
 					} else {
 						mui.toast("删除失败！");
 					}
+				},
+				error: function(xhr, type, errorThrown) {
+					mui.alert('服务器连接超时，请稍后再试');
 				}
-			})
+			});
 		}
 	})
 }
@@ -159,14 +205,22 @@ $(function() {
 })
 
 function select(param) {
-	$.ajax({
-		url: 'http://127.0.0.1:8080/zCost/getCost',
-		type: 'post',
-		dataType: 'json',
+	mui.ajax(localStorage.getItem('adminurl') + '/zCost/getCost', {
 		data: param,
+		dataType: 'json', //服务器返回json格式数据
+		type: 'post', //HTTP请求类型
+		timeout: 10000, //超时时间设置为10秒；
+		beforeSend: function() {
+			showLoading();
+		},
+		complete: function() {
+			hideLoading();
+		},
 		success: function(e) {
 			$("#ul").html("");
-			if(e.length>0){
+			$("#message").hide();
+			$("#message").html("");
+			if (e.length > 0) {
 				$(e).each(function() {
 					$("#ul").append("<li class='mui-table-view-cell mui-media list-li'>" +
 						"<div class='mui-slider-right mui-disabled'>" +
@@ -185,9 +239,13 @@ function select(param) {
 						"</div>" +
 						"</li>");
 				});
-			}else{
-				$(".mui-scroll").append("<p style='font-size:18px;padding:20px;text-align: center;'>无数据<p>");
+			} else {
+				$("#message").show();
+				$("#message").html("无数据");
 			}
+		},
+		error: function(xhr, type, errorThrown) {
+			mui.alert('服务器连接超时，请稍后再试');
 		}
-	})
+	});
 }

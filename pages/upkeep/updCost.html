@@ -11,7 +11,7 @@
 
 	<body>
 		<header class="mui-bar mui-bar-nav my-bar-img">
-			<a class="mui-icon mui-action-menu mui-icon mui-icon-back mui-pull-left" href="#" onclick="retrun()"></a>
+			<a class="mui-icon mui-action-menu mui-icon mui-icon-back mui-pull-left mui-action-back" href="#"></a>
 			<h1 class="mui-title">修改保养费用</h1>		
 		</header>
 			<!-- 主页面内容容器 -->
@@ -19,44 +19,48 @@
 				<div class="mui-scroll">
 					<!-- 主界面具体展示内容 -->
 					<form class="mui-input-group" style="font-size: 15px;margin-top: 10%;">
+						<div class="mui-input-row">
+							<label >产品编号</label>
+						    <input type="text" class="mui-input-clear" id="coding" disabled="disabled" style="font-size: 15px;">
+							<input type="hidden" id="cid" />
+						</div>
 					    <div class="mui-input-row" style="width: 100%;">
 							<label >保养人员</label>
-							<select>
-								<option>xxx</option>
-								<option>xxx</option>
-								<option>xxx</option>
+							<select id="operator">
 							</select>
 					    </div>
 					    <div class="mui-input-row">
 							<label >保养地址</label>
-					        <input type="text" class="mui-input-clear" placeholder="请填写保养地址" style="font-size: 15px;">
-							<span class="mui-icon iconfont icon-xinbaniconshangchuan-" style="position: absolute;margin-left: 55%;margin-top: 10px;font-size: 20px;"></span>
+					        <input type="text" class="mui-input-clear" placeholder="请填写保养地址" style="font-size: 15px;" id="address">
+							<!-- <span class="mui-icon iconfont icon-xinbaniconshangchuan-" style="position: absolute;margin-left: 55%;margin-top: 10px;font-size: 20px;"></span> -->
 					    </div>
 						<div class="mui-input-row">
 							<label >录入人</label>
-						    <input type="text" class="mui-input-clear" placeholder="" style="font-size: 15px;">
+						    <input type="text" class="mui-input-clear" id="dataentryclerk" placeholder="" style="font-size: 15px;">
 						</div>
 						<div class="mui-input-row">
 							<label >联系电话</label>
-						    <input type="text" class="mui-input-clear" placeholder="请填写联系电话" style="font-size: 15px;">
+						    <input type="text" class="mui-input-clear" placeholder="请填写联系电话" id="phone" style="font-size: 15px;">
 						</div>
 						<div class="mui-input-row">
 							<label >费用</label>
-						    <input type="text" class="mui-input-clear" placeholder="" style="font-size: 15px;">
-						</div><strong></strong>
+						    <input type="text" class="mui-input-clear" placeholder="" id="cost" style="font-size: 15px;">
+						</div>
 						<div class="mui-input-row">
-							<label >产品编号</label>
-						    <input type="text" class="mui-input-clear" placeholder="请填写产品编号" style="font-size: 15px;">
+							<label >录入日期</label>
+						    <input onclick="getDate()" type="text" class="mui-input-clear" id="inputtime" placeholder="请填写录入日期" style="font-size: 15px;">
 						</div>
 					</form>
 					<div class="mui-content-padded">
-					    <button type="button" class="mui-btn mui-btn-block mui-btn-blue border-radius">保存</button>
+					    <button type="button" class="mui-btn mui-btn-block mui-btn-blue border-radius" onclick="submit()">保存</button>
 					</div>
 				</div>
 			</div>
 		<div class="mui-off-canvas-backdrop"></div>
 	</body>
+	<script src="../../static/js/jquery-1.12.4.js"></script>
 	<script src="../../js/mui.min.js"></script>
+	<script src="../../js/mui.picker.min.js"></script>
 	<script src="../../static/js/upkeep/updCost.js"></script>
 
 </html>

@@ -12,7 +12,7 @@
 	<body>
 		
 		<header class="mui-bar mui-bar-nav my-bar-img">
-			<a class="mui-icon mui-action-menu mui-icon mui-icon-back mui-pull-left" href="#" onclick="retrun()"></a>
+			<a class="mui-icon mui-action-menu mui-icon mui-icon-back mui-pull-left mui-action-back" href="#"></a>
 			<h1 class="mui-title">修改保养派单</h1>
 		</header>
 			<!-- 主页面内容容器 -->
@@ -20,35 +20,34 @@
 				<div class="mui-scroll">
 					<!-- 主界面具体展示内容 -->
 					<form class="mui-input-group" style="font-size: 15px;margin-top: 10%;">
+						<div class="mui-input-row">
+							<label >产品编号</label>
+						    <input type="text" class="mui-input-clear" placeholder="请填写产品编号" disabled="disabled" style="font-size: 15px;" id="coding">
+						</div>
 					    <div class="mui-input-row" style="width: 100%;">
 							<label >保养人员</label>
-							<select>
-								<option>xxx</option>
-								<option>xxx</option>
-								<option>xxx</option>
+							<select id="operator">
 							</select>
+							<input type="hidden" id="did"/>
 					    </div>
 					    <div class="mui-input-row">
 							<label >保养地址</label>
-					        <input type="text" class="mui-input-clear" placeholder="请填写保养地址" style="font-size: 15px;">
-							<span class="mui-icon iconfont icon-xinbaniconshangchuan-" style="position: absolute;margin-left: 55%;margin-top: 10px;font-size: 20px;"></span>
+					        <input type="text" class="mui-input-clear" placeholder="请填写保养地址" id="address" style="font-size: 15px;">
+							<!-- <span class="mui-icon iconfont icon-xinbaniconshangchuan-" style="position: absolute;margin-left: 55%;margin-top: 10px;font-size: 20px;" id="address"></span> -->
 					    </div>
 						<div class="mui-input-row">
 							<label >联系电话</label>
-						    <input type="text" class="mui-input-clear" placeholder="请填写联系电话" style="font-size: 15px;">
-						</div>
-						<div class="mui-input-row">
-							<label >产品编号</label>
-						    <input type="text" class="mui-input-clear" placeholder="请填写产品编号" style="font-size: 15px;">
+						    <input type="text" class="mui-input-clear" placeholder="请填写联系电话" style="font-size: 15px;" id="phone">
 						</div>
 					</form>
 					<div class="mui-content-padded">
-					    <button type="button" class="mui-btn mui-btn-block mui-btn-blue border-radius">保存</button>
+					    <button type="button" class="mui-btn mui-btn-block mui-btn-blue border-radius" onclick="submit()">保存</button>
 					</div>
 				</div>
 			</div>
 		<div class="mui-off-canvas-backdrop"></div>
 	</body>
 	<script src="../../js/mui.min.js"></script>
+	<script src="../../static/js/jquery-1.12.4.js"></script>
 	<script src="../../static/js/upkeep/updSend.js"></script>
 </html>
