@@ -111,7 +111,7 @@ function list(id){
 			afterinstallation="E:/file/img/"+e.afterinstallation;
 	    	$("#content").html("");
 	    	$("#content").append("<div class='mui-card'>"+
-	    				"<div class='mui-card-header'>"+e.coding+"</div>"+
+	    				"<div class='mui-card-header'>"+e.arpartcoding+"</div>"+
 	    				"<div class='mui-card-content'>"+
 	    					"<div class='mui-card-content-inner'>"+
 	    						e.address+
@@ -222,7 +222,7 @@ function select(param){
 	    						"	<p style='position: absolute;right: 0;'>"+status+"</p>"+
 	    							"<div class='mui-table-cell'>"+
 	    								"<div class='mui-media-body'>"+
-	    									"<span>产品编码 </span>"+this.coding+
+	    									"<span>产品编码 </span>"+this.arpartcoding+
 	    									"<p>安装人："+this.moperator+"</p>"+
 	    								"<p style='width: 200px;' class='mui-ellipsis'>"+this.address+"</p>"+
 	    								"</div>"+
