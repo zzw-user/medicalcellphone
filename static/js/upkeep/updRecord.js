@@ -29,11 +29,21 @@ $(function() {
 				hideLoading();
 			},
 			success: function(e) {
+				var beforeinstallation="../../images/iconfont-tianjia.png";
+				var afterinstallation="../../images/iconfont-tianjia.png";
+				if(e.afterinstallation!=null && e.afterinstallation!=""){
+					afterinstallation="https://zzwzz-1302574033.cos.ap-nanjing.myqcloud.com/"+e.afterinstallation;
+				};
+				if(e.beforeinstallation!=null && e.beforeinstallation!=""){
+					beforeinstallation="https://zzwzz-1302574033.cos.ap-nanjing.myqcloud.com/"+e.beforeinstallation;
+				};
 				$("#rid").val(e.rid);
 				$("#operator").val(e.operator);
 				$("#coding").val(e.coding);
 				$("#address").val(e.address);
 				$("#installationtime").val(e.installationtime);
+				document.getElementById("prePhotos2").src = beforeinstallation;
+				document.getElementById("sufPhotos2").src = afterinstallation;
 				var status = $("input[name='status']");
 				for (var i = 0; i < status.length; i++) {
 					if (e.status == status[i].value) {

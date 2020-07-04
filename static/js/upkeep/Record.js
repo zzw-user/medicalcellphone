@@ -108,7 +108,14 @@ function list(id){
 	        hideLoading();
 	    },
 	    success: function(e) {
-			afterinstallation="E:/file/img/"+e.afterinstallation;
+	    	var beforeinstallation="../../images/iconfont-tianjia.png";
+	    	var afterinstallation="../../images/iconfont-tianjia.png";
+	    	if(e.afterinstallation!=null && e.afterinstallation!=""){
+	    		afterinstallation="https://zzwzz-1302574033.cos.ap-nanjing.myqcloud.com/"+e.afterinstallation;
+	    	};
+	    	if(e.beforeinstallation!=null && e.beforeinstallation!=""){
+	    		beforeinstallation="https://zzwzz-1302574033.cos.ap-nanjing.myqcloud.com/"+e.beforeinstallation;
+	    	};
 	    	$("#content").html("");
 	    	$("#content").append("<div class='mui-card'>"+
 	    				"<div class='mui-card-header'>"+e.coding+"</div>"+
@@ -118,9 +125,10 @@ function list(id){
 	    					"</div>"+
 	    					"<div>"+
 	    						"<p>安装前图片</p>"+
-	    						"<img src='../../images/iconfont-tianjia.png'/>"+
+	    						"<img src='"+beforeinstallation+"' width='80' height='80'/>"+
 	    						"<p>安装后图片</p>"+
-	    						"<img src='"+afterinstallation+"' width='120' height='120'/>"+
+	    						"<img src='"+afterinstallation+"' width='80' height='80'/>"+
+	    						"<p>评估："+e.assess+"<p>"+
 	    					"</div>"+
 	    				"</div>"+
 	    				"<div class='mui-card-footer'>"+
